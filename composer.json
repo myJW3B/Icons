@@ -1,5 +1,5 @@
 {
-	"name": "myjw3b/main",
+	"name": "myjw3b/icons",
 	"description": "SVG Icons from Bootstrap and Iconmonster in a PHP class to use easily.",
 	"minimum-stability":"dev",
 	"autoload":{

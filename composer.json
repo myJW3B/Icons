@@ -1,6 +1,7 @@
 {
 	"name": "myjw3b/icons",
 	"description": "SVG Icons from Bootstrap and Iconmonster in a PHP class to use easily.",
+	"license": "MIT",
 	"minimum-stability":"dev",
 	"autoload":{
 		"psr-4": {

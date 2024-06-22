@@ -5,7 +5,7 @@
 	"minimum-stability":"dev",
 	"autoload":{
 		"psr-4": {
-			"JW3B\\gui\\": "Icons.php"
+			"JW3B\\gui\\": "classes/"
 		}
 	}
 }

@@ -20,7 +20,7 @@ class Icons {
 
 	/**
 	 * Set icon based on the key thats below in the array..
-	 * @param name icon name
+	 * @param string icon name
 	 * 
 	 * @return str svg icon
 	 */

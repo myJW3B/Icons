@@ -5,6 +5,9 @@ class Icons {
 
 	public $family;
 	public $size;
+
+	public $iconmonstr;
+	public $bsicons;
 	public $icons;
 
 	/**
@@ -13,7 +16,7 @@ class Icons {
 	 *
 	 * @return null
 	 */
-	public function __construct($family="bootstrap", $size=24){
+	public function __construct($family="iconmonstr", $size=24){
 		$this->family = $family;
 		$this->size = $size;
 	}
@@ -26,6 +29,11 @@ class Icons {
 	 */
 	public function change_family($fam){
 		$this->family = $fam;
+		return $this;
+	}
+
+	public function change_size($s){
+		$this->size = $s;
 		return $this;
 	}
 
@@ -42,11 +50,6 @@ class Icons {
 			$get = $this->monstr_icons($name);
 		}
 		return $get;
-	}
-
-	public function change_size($s){
-		$this->size = $s;
-		return $this;
 	}
 
 	public function get_all_icons(){
@@ -81,12 +84,40 @@ class Icons {
 	}
 
 	public function build_monstr_icons(){
-		$this->icons = include __DIR__."/../lists/iconmonstr.php";
+		if(!isset($this->iconmonstr)){
+			$this->iconmonstr = include __DIR__."/../lists/iconmonstr.php";
+		}
+		$this->icons = $this->iconmonstr;
 		return $this->icons;
 	}
 
 	public function build_bs_icon_ary(){
-		$this->icons = 	include __DIR__."/../lists/bootstrap-icons.php";
+		if(!isset($this->bsicons)){
+			$this->bsicons = 	include __DIR__."/../lists/bootstrap-icons.php";
+		}
+		$this->icons = 	$this->bsicons;
 		return $this->icons;
+	}
+
+	public function view_all_icons(){
+		$return = '<div class="container"><div class="row g-1"><div class="col-12"><h3>Iconmonstr Icons</h3></div>';
+		$iconmonstr = $this->build_monstr_icons();
+		ksort($iconmonstr);
+		foreach($iconmonstr as $key => $ary){
+			$class = isset($ary['class']) ? $ary['class'] : '';
+			$svg = '<svg data-jw3b-icon="'.$key.'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi '.$class.'" viewBox="0 0 24 24">'.$ary['path'].'</svg>';
+			$return .= '<div class="col-2"><div class="p-2 bg-dark border text-center">'.$key.'<br>'.$svg.'</div></div>';
+		}
+
+		$return .= '<div class="col-12"><h3>Bootstrap Icons</h3></div>';
+		$bs_ary = $this->build_bs_icon_ary();
+		ksort($bs_ary);
+		foreach($bs_ary as $key => $ary){
+			$class = isset($ary['class']) ? $ary['class'] : '';
+			$svg = '<svg data-jw3b-icon="'.$key.'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi '.$class.'" viewBox="0 0 16 16">'.$ary['path'].'</svg>';
+			$return .= '<div class="col-2"><div class="p-2 bg-dark border text-center">'.$key.'<br>'.$svg.'</div></div>';
+		}
+		$return .= '</div></div>';
+		return $return;
 	}
 }

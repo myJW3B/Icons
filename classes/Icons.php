@@ -16,8 +16,8 @@ class Icons {
 	 *
 	 * @return null
 	 */
-	public function __construct(&$family="iconmonstr", &$size=24){
-		$this->family = &$family;
+	public function __construct($family="iconmonstr", &$size=24){
+		$this->family = $family;
 		$this->size = &$size;
 	}
 
@@ -30,8 +30,8 @@ class Icons {
 	 * @param string $fam - bootstrap or iconmonstr
 	 * @return self
 	 */
-	public function change_family(&$fam){
-		$this->family = &$fam;
+	public function change_family($fam){
+		$this->family = $fam;
 		return $this;
 	}
 	/**

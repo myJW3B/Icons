@@ -3,8 +3,8 @@ namespace JW3B\gui;
 
 class Icons {
 
-	public $family;
-	public $size;
+	protected $family;
+	protected $size;
 
 	public $iconmonstr;
 	public $bsicons;
@@ -16,24 +16,35 @@ class Icons {
 	 *
 	 * @return null
 	 */
-	public function __construct($family="iconmonstr", $size=24){
-		$this->family = $family;
-		$this->size = $size;
+	public function __construct(&$family="iconmonstr", &$size=24){
+		$this->family = &$family;
+		$this->size = &$size;
 	}
 
 	/**
 	 * change_family, to switch between the different icon families available
-	 *
+	 *			If you're changing the family being used, You will
+	 * 			need to put it within a variable to pass to the function
+	 * 			$fam = 'bootstrap';
+	 * 			$icon->change_family($fam)->icon('tools');
 	 * @param string $fam - bootstrap or iconmonstr
 	 * @return self
 	 */
-	public function change_family($fam){
-		$this->family = $fam;
+	public function change_family(&$fam){
+		$this->family = &$fam;
 		return $this;
 	}
-
-	public function change_size($s){
-		$this->size = $s;
+	/**
+	 * change_size, to change icon sizes
+	 *			If you're changing the icon size, You will
+	 * 			need to put it within a variable to pass to the function
+	 * 			$size = 18;
+	 * 			$icon->change_size($size)->icon('tools');
+	 * @param string $fam - bootstrap or iconmonstr
+	 * @return self
+	 */
+	public function change_size(&$s){
+		$this->size = &$s;
 		return $this;
 	}
 
@@ -44,10 +55,10 @@ class Icons {
 	 * @return string svg icon
 	 */
 	public function icon($name){
-		if($this->family == 'bootstrap'){
-			$get = $this->bootstrap_icons($name);
-		} else if($this->family == 'iconmonstr'){
+		if($this->family == 'iconmonstr'){
 			$get = $this->monstr_icons($name);
+		} else if($this->family == 'bootstrap'){
+			$get = $this->bootstrap_icons($name);
 		}
 		return $get;
 	}
